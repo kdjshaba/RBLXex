@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="WeAreDevs_API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Downloads\WeAreDevs_API.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\APIs\WeAreDevs_API.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -92,8 +92,8 @@
   <ItemGroup>
     <Content Include="images\logoBG.ico" />
     <Content Include="images\logoNoBG.png" />
-    <Content Include="Monaco\**">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="monaco\**">
+     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

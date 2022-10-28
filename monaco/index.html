@@ -64,13 +64,13 @@
                         { token: 'keyword', foreground: 'ff3b73' },
                         { token: 'comment', foreground: '808080' },
                         { token: 'number', foreground: 'ffc35c' },
-                        { token: 'string', foreground: 'ff9169' }
+						{ token: 'string', foreground: 'ff9169' }
 					]
 				});
 
 				editor = monaco.editor.create(document.getElementById('container'), {
 					value: [
-						"",
+						"--Developed by: Ossyence\nprint('Hello, world!')",
 					].join('\n'),
 					language: 'lua',
 					theme: "roblox-dark",
@@ -79,7 +79,7 @@
 						verticalHasArrows: true,
 					},
 					dragAndDrop: true,
-					links: true,
+					links: false,
 					minimap: {
 						enabled: false,
 					},

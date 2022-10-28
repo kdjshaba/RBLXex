@@ -14,15 +14,15 @@ namespace RBLXex
 {
     public partial class Form1 : Form
     {
-        private ExploitAPI api = new ExploitAPI();
-        private WebClient webClient = new WebClient();
+        private readonly ExploitAPI api = new ExploitAPI();
+        private readonly WebClient webClient = new WebClient();
 
         private Point lastPoint;
 
         private bool busyAttaching = false;
 
         private static readonly string robloxName = "RobloxPlayerBeta";
-        private static readonly string monacoPath = Path.Combine(Application.StartupPath, @"Monaco");
+        private static readonly string monacoPath = Path.Combine(Application.StartupPath, @"monaco");
         
         public Form1()
         {
@@ -30,6 +30,10 @@ namespace RBLXex
         }
 
         //Custom Functions
+        private int LerpInt(float from, float to, float speed)
+        {
+            return (int)Math.Round(from * (1 - speed) + to * speed);
+        }
 
         private void SetupIntellisense()
         {
@@ -40,7 +44,7 @@ namespace RBLXex
                 string text3 = "\"" + detail + "\"";
                 string text4 = "\"" + insertText + "\"";
 
-                editor.Document.InvokeScript("AddIntellisense", new object[]
+                Editor.Document.InvokeScript("AddIntellisense", new object[]
                 {
                     label,
                     kind,
@@ -86,7 +90,7 @@ namespace RBLXex
 
         private string GetEditorValue() {
             object[] args = new string[0];
-            object obj = editor.Document.InvokeScript("GetText", args);
+            object obj = Editor.Document.InvokeScript("GetText", args);
             string script = obj.ToString();
 
             return script;
@@ -94,7 +98,7 @@ namespace RBLXex
 
         private void SetEditorValue(string value)
         {
-            editor.Document.InvokeScript("SetText", new object[] { value });
+            Editor.Document.InvokeScript("SetText", new object[] { value });
         }
 
         private void ShowMessage(string msg) { 
@@ -176,17 +180,17 @@ namespace RBLXex
         }
 
         //UI Events
-        private void minimize_button_Click(object sender, EventArgs e)
+        private void MinimizeButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void close_button_Click(object sender, EventArgs e)
+        private void CloseButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void attach_button_Click(object sender, EventArgs e)
+        private void AttachButton_Click(object sender, EventArgs e)
         {
             if (busyAttaching) { ShowMessage("Busy attaching, please wait."); return; }
             if (!IsAppRunning(robloxName)) { ShowMessage("Cant attach without ROBLOX running."); return; }
@@ -197,7 +201,7 @@ namespace RBLXex
             });
         }
 
-        private void execute_button_Click(object sender, EventArgs e)
+        private void ExecuteButton_Click(object sender, EventArgs e)
         {
             void SendEditorValueToApi()
             {
@@ -215,13 +219,12 @@ namespace RBLXex
             });
         }
 
-        private void clear_button_Click(object sender, EventArgs e)
+        private void ClearButton_Click(object sender, EventArgs e)
         {
-            //Clear editor
             SetEditorValue("");
         }
 
-        private void open_file_button_Click(object sender, EventArgs e)
+        private void OpenFileButton_Click(object sender, EventArgs e)
         {
             //Open a file to change the content of the text editor
             OpenFileDialog dialog = new OpenFileDialog();
@@ -233,35 +236,37 @@ namespace RBLXex
             }
         }
 
-        private void save_file_button_Click(object sender, EventArgs e)
+        private void SaveFileButton_Click(object sender, EventArgs e)
         {
             //Create a new file with contents of the text editor
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "Lua File|*.lua|Text File|*.txt"; //Lets user decide which one to use (lua or txt)
+            SaveFileDialog dialog = new SaveFileDialog { Filter = "Lua File|*.lua|Text File|*.txt" };
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                using (Stream stream = File.Open(dialog.FileName, FileMode.CreateNew)) //Create new file with name chosen
+                using (Stream stream = File.Open(dialog.FileName, FileMode.CreateNew))
                 using (StreamWriter writer = new StreamWriter(stream))
                 {
-                    writer.Write(GetEditorValue()); //Set contents of file to text editors contents
+                    writer.Write(GetEditorValue());
                 }
             }
         }
 
-        private void top_bar_MouseDown(object sender, MouseEventArgs mouse)
+        private void TopBar_MouseDown(object sender, MouseEventArgs mouse)
         {
-            //Mark point
             lastPoint = new Point(mouse.X, mouse.Y);
         }
 
-        private void top_bar_MouseMove(object sender, MouseEventArgs mouse)
+        private void TopBar_MouseMove(object sender, MouseEventArgs mouse)
         {
-            //Move top bar around based on last point and mouses position
             if (mouse.Button == MouseButtons.Left)
             {
-                this.Left += mouse.X - lastPoint.X;
-                this.Top += mouse.Y - lastPoint.Y;
+                //Normal Movement
+                //this.Left += mouse.X - lastPoint.X;
+                //this.Top += mouse.Y - lastPoint.Y;
+
+                //Interpolated movement
+                this.Top = LerpInt(this.Top, this.Top + (mouse.Y - lastPoint.Y), 0.175f);
+                this.Left = LerpInt(this.Left, this.Left + (mouse.X - lastPoint.X), 0.175f);
             }
         }
 
@@ -274,6 +279,7 @@ namespace RBLXex
             //also WebView2 was more difficult to get info out of so
 
             try {
+                //Get the registry key
                 RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\FEATURE_BROWSER_EMULATION", true);
                 
                 string friendlyName = AppDomain.CurrentDomain.FriendlyName;
@@ -281,17 +287,14 @@ namespace RBLXex
 
                 if (flag2)
                 {
-                    key.SetValue(friendlyName, 11001, RegistryValueKind.DWord); //Edit the registry
+                    key.SetValue(friendlyName, 11001, RegistryValueKind.DWord); //Set the registry
                 }
             } catch {}
 
-            editor.Url = new Uri(string.Format(monacoPath + "/Monaco.html", Directory.GetCurrentDirectory()));
+            Editor.Url = new Uri(string.Format(monacoPath + "/index.html", Directory.GetCurrentDirectory()));
 
-            await Task.Delay(500); //Wait 0.5 seconds so website can load up
+            await Task.Delay(100); //Wait 0.1 seconds so website can load up
 
-            editor.Document.InvokeScript("SetTheme", new string[] { "roblox-dark" });
-            SetEditorValue("--Developed by: Ossyence\nprint('Hello, world!')");
-            
             SetupIntellisense();
         }
     }

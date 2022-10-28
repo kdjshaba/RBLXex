@@ -8,15 +8,11 @@ table
 debug
 string
 coroutine
-Humanoid
-ClickDetector
-LocalScript
 Model
-ModuleScript
-Mouse
 Part
+Character
+LocalPlayer
 Player
-Script
 Tool
 RunService
 UserInputService

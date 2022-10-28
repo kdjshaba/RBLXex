@@ -29,40 +29,40 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.top_bar = new System.Windows.Forms.Panel();
+            this.TopBar = new System.Windows.Forms.Panel();
             this.seperator = new System.Windows.Forms.Panel();
-            this.logo = new System.Windows.Forms.PictureBox();
-            this.minimize_button = new System.Windows.Forms.Button();
-            this.title = new System.Windows.Forms.Label();
-            this.open_file_button = new System.Windows.Forms.Button();
-            this.save_file_button = new System.Windows.Forms.Button();
-            this.close_button = new System.Windows.Forms.Button();
-            this.execute_button = new System.Windows.Forms.Button();
-            this.editor = new System.Windows.Forms.WebBrowser();
-            this.attach_button = new System.Windows.Forms.Button();
-            this.clear_button = new System.Windows.Forms.Button();
-            this.options_button = new System.Windows.Forms.Button();
-            this.top_bar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
+            this.Logo = new System.Windows.Forms.PictureBox();
+            this.MinimizeButton = new System.Windows.Forms.Button();
+            this.Title = new System.Windows.Forms.Label();
+            this.OpenFileButton = new System.Windows.Forms.Button();
+            this.SaveFileButton = new System.Windows.Forms.Button();
+            this.CloseButton = new System.Windows.Forms.Button();
+            this.ExecuteButton = new System.Windows.Forms.Button();
+            this.Editor = new System.Windows.Forms.WebBrowser();
+            this.AttachButton = new System.Windows.Forms.Button();
+            this.ClearButton = new System.Windows.Forms.Button();
+            this.OptionsButton = new System.Windows.Forms.Button();
+            this.TopBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             this.SuspendLayout();
             // 
-            // top_bar
+            // TopBar
             // 
-            this.top_bar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.top_bar.Controls.Add(this.seperator);
-            this.top_bar.Controls.Add(this.logo);
-            this.top_bar.Controls.Add(this.minimize_button);
-            this.top_bar.Controls.Add(this.title);
-            this.top_bar.Controls.Add(this.open_file_button);
-            this.top_bar.Controls.Add(this.save_file_button);
-            this.top_bar.Controls.Add(this.close_button);
-            this.top_bar.ForeColor = System.Drawing.Color.White;
-            this.top_bar.Location = new System.Drawing.Point(0, 0);
-            this.top_bar.Name = "top_bar";
-            this.top_bar.Size = new System.Drawing.Size(650, 34);
-            this.top_bar.TabIndex = 0;
-            this.top_bar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.top_bar_MouseDown);
-            this.top_bar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.top_bar_MouseMove);
+            this.TopBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.TopBar.Controls.Add(this.seperator);
+            this.TopBar.Controls.Add(this.Logo);
+            this.TopBar.Controls.Add(this.MinimizeButton);
+            this.TopBar.Controls.Add(this.Title);
+            this.TopBar.Controls.Add(this.OpenFileButton);
+            this.TopBar.Controls.Add(this.SaveFileButton);
+            this.TopBar.Controls.Add(this.CloseButton);
+            this.TopBar.ForeColor = System.Drawing.Color.White;
+            this.TopBar.Location = new System.Drawing.Point(0, 0);
+            this.TopBar.Name = "TopBar";
+            this.TopBar.Size = new System.Drawing.Size(650, 34);
+            this.TopBar.TabIndex = 0;
+            this.TopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopBar_MouseDown);
+            this.TopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopBar_MouseMove);
             // 
             // seperator
             // 
@@ -72,162 +72,162 @@
             this.seperator.Size = new System.Drawing.Size(1, 20);
             this.seperator.TabIndex = 9;
             // 
-            // logo
+            // Logo
             // 
-            this.logo.BackColor = System.Drawing.Color.Transparent;
-            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
-            this.logo.Location = new System.Drawing.Point(3, 0);
-            this.logo.Name = "logo";
-            this.logo.Size = new System.Drawing.Size(34, 34);
-            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logo.TabIndex = 8;
-            this.logo.TabStop = false;
+            this.Logo.BackColor = System.Drawing.Color.Transparent;
+            this.Logo.Image = ((System.Drawing.Image)(resources.GetObject("Logo.Image")));
+            this.Logo.Location = new System.Drawing.Point(3, 0);
+            this.Logo.Name = "Logo";
+            this.Logo.Size = new System.Drawing.Size(34, 34);
+            this.Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Logo.TabIndex = 8;
+            this.Logo.TabStop = false;
             // 
-            // minimize_button
+            // MinimizeButton
             // 
-            this.minimize_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.minimize_button.FlatAppearance.BorderSize = 0;
-            this.minimize_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minimize_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.minimize_button.ForeColor = System.Drawing.Color.White;
-            this.minimize_button.Location = new System.Drawing.Point(556, 0);
-            this.minimize_button.Name = "minimize_button";
-            this.minimize_button.Size = new System.Drawing.Size(47, 34);
-            this.minimize_button.TabIndex = 7;
-            this.minimize_button.Text = "-";
-            this.minimize_button.UseVisualStyleBackColor = false;
-            this.minimize_button.Click += new System.EventHandler(this.minimize_button_Click);
+            this.MinimizeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.MinimizeButton.FlatAppearance.BorderSize = 0;
+            this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MinimizeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MinimizeButton.ForeColor = System.Drawing.Color.White;
+            this.MinimizeButton.Location = new System.Drawing.Point(556, 0);
+            this.MinimizeButton.Name = "MinimizeButton";
+            this.MinimizeButton.Size = new System.Drawing.Size(47, 34);
+            this.MinimizeButton.TabIndex = 7;
+            this.MinimizeButton.Text = "-";
+            this.MinimizeButton.UseVisualStyleBackColor = false;
+            this.MinimizeButton.Click += new System.EventHandler(this.MinimizeButton_Click);
             // 
-            // title
+            // Title
             // 
-            this.title.AutoSize = true;
-            this.title.BackColor = System.Drawing.Color.Transparent;
-            this.title.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold);
-            this.title.ForeColor = System.Drawing.Color.White;
-            this.title.Location = new System.Drawing.Point(40, 4);
-            this.title.Name = "title";
-            this.title.Size = new System.Drawing.Size(79, 25);
-            this.title.TabIndex = 6;
-            this.title.Text = "RBLXex";
+            this.Title.AutoSize = true;
+            this.Title.BackColor = System.Drawing.Color.Transparent;
+            this.Title.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold);
+            this.Title.ForeColor = System.Drawing.Color.White;
+            this.Title.Location = new System.Drawing.Point(40, 4);
+            this.Title.Name = "Title";
+            this.Title.Size = new System.Drawing.Size(79, 25);
+            this.Title.TabIndex = 6;
+            this.Title.Text = "RBLXex";
             // 
-            // open_file_button
+            // OpenFileButton
             // 
-            this.open_file_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.open_file_button.FlatAppearance.BorderSize = 0;
-            this.open_file_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.open_file_button.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.open_file_button.ForeColor = System.Drawing.Color.White;
-            this.open_file_button.Location = new System.Drawing.Point(240, 5);
-            this.open_file_button.Name = "open_file_button";
-            this.open_file_button.Size = new System.Drawing.Size(102, 25);
-            this.open_file_button.TabIndex = 3;
-            this.open_file_button.Text = "Open File";
-            this.open_file_button.UseVisualStyleBackColor = false;
-            this.open_file_button.Click += new System.EventHandler(this.open_file_button_Click);
+            this.OpenFileButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.OpenFileButton.FlatAppearance.BorderSize = 0;
+            this.OpenFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpenFileButton.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpenFileButton.ForeColor = System.Drawing.Color.White;
+            this.OpenFileButton.Location = new System.Drawing.Point(240, 5);
+            this.OpenFileButton.Name = "OpenFileButton";
+            this.OpenFileButton.Size = new System.Drawing.Size(102, 25);
+            this.OpenFileButton.TabIndex = 3;
+            this.OpenFileButton.Text = "Open File";
+            this.OpenFileButton.UseVisualStyleBackColor = false;
+            this.OpenFileButton.Click += new System.EventHandler(this.OpenFileButton_Click);
             // 
-            // save_file_button
+            // SaveFileButton
             // 
-            this.save_file_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.save_file_button.FlatAppearance.BorderSize = 0;
-            this.save_file_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.save_file_button.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.save_file_button.ForeColor = System.Drawing.Color.White;
-            this.save_file_button.Location = new System.Drawing.Point(124, 5);
-            this.save_file_button.Name = "save_file_button";
-            this.save_file_button.Size = new System.Drawing.Size(103, 25);
-            this.save_file_button.TabIndex = 4;
-            this.save_file_button.Text = "Save File";
-            this.save_file_button.UseVisualStyleBackColor = false;
-            this.save_file_button.Click += new System.EventHandler(this.save_file_button_Click);
+            this.SaveFileButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.SaveFileButton.FlatAppearance.BorderSize = 0;
+            this.SaveFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaveFileButton.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveFileButton.ForeColor = System.Drawing.Color.White;
+            this.SaveFileButton.Location = new System.Drawing.Point(124, 5);
+            this.SaveFileButton.Name = "SaveFileButton";
+            this.SaveFileButton.Size = new System.Drawing.Size(103, 25);
+            this.SaveFileButton.TabIndex = 4;
+            this.SaveFileButton.Text = "Save File";
+            this.SaveFileButton.UseVisualStyleBackColor = false;
+            this.SaveFileButton.Click += new System.EventHandler(this.SaveFileButton_Click);
             // 
-            // close_button
+            // CloseButton
             // 
-            this.close_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.close_button.FlatAppearance.BorderSize = 0;
-            this.close_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.close_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.close_button.ForeColor = System.Drawing.Color.White;
-            this.close_button.Location = new System.Drawing.Point(603, 0);
-            this.close_button.Name = "close_button";
-            this.close_button.Size = new System.Drawing.Size(47, 34);
-            this.close_button.TabIndex = 5;
-            this.close_button.Text = "X";
-            this.close_button.UseVisualStyleBackColor = false;
-            this.close_button.Click += new System.EventHandler(this.close_button_Click);
+            this.CloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CloseButton.FlatAppearance.BorderSize = 0;
+            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloseButton.ForeColor = System.Drawing.Color.White;
+            this.CloseButton.Location = new System.Drawing.Point(603, 0);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(47, 34);
+            this.CloseButton.TabIndex = 5;
+            this.CloseButton.Text = "X";
+            this.CloseButton.UseVisualStyleBackColor = false;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
-            // execute_button
+            // ExecuteButton
             // 
-            this.execute_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(59)))), ((int)(((byte)(115)))));
-            this.execute_button.FlatAppearance.BorderSize = 0;
-            this.execute_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.execute_button.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.execute_button.ForeColor = System.Drawing.Color.White;
-            this.execute_button.Location = new System.Drawing.Point(0, 332);
-            this.execute_button.Name = "execute_button";
-            this.execute_button.Size = new System.Drawing.Size(163, 34);
-            this.execute_button.TabIndex = 2;
-            this.execute_button.Text = "Execute";
-            this.execute_button.UseVisualStyleBackColor = false;
-            this.execute_button.Click += new System.EventHandler(this.execute_button_Click);
+            this.ExecuteButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(59)))), ((int)(((byte)(115)))));
+            this.ExecuteButton.FlatAppearance.BorderSize = 0;
+            this.ExecuteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExecuteButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExecuteButton.ForeColor = System.Drawing.Color.White;
+            this.ExecuteButton.Location = new System.Drawing.Point(0, 332);
+            this.ExecuteButton.Name = "ExecuteButton";
+            this.ExecuteButton.Size = new System.Drawing.Size(163, 34);
+            this.ExecuteButton.TabIndex = 2;
+            this.ExecuteButton.Text = "Execute";
+            this.ExecuteButton.UseVisualStyleBackColor = false;
+            this.ExecuteButton.Click += new System.EventHandler(this.ExecuteButton_Click);
             // 
-            // editor
+            // Editor
             // 
-            this.editor.Location = new System.Drawing.Point(0, 34);
-            this.editor.MinimumSize = new System.Drawing.Size(20, 20);
-            this.editor.Name = "editor";
-            this.editor.Size = new System.Drawing.Size(650, 298);
-            this.editor.TabIndex = 10;
+            this.Editor.Location = new System.Drawing.Point(0, 34);
+            this.Editor.MinimumSize = new System.Drawing.Size(20, 20);
+            this.Editor.Name = "Editor";
+            this.Editor.Size = new System.Drawing.Size(650, 298);
+            this.Editor.TabIndex = 10;
             // 
-            // attach_button
+            // AttachButton
             // 
-            this.attach_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(38)))), ((int)(((byte)(77)))));
-            this.attach_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.attach_button.FlatAppearance.BorderSize = 0;
-            this.attach_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.attach_button.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.attach_button.ForeColor = System.Drawing.Color.White;
-            this.attach_button.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.attach_button.Location = new System.Drawing.Point(163, 332);
-            this.attach_button.Name = "attach_button";
-            this.attach_button.Size = new System.Drawing.Size(162, 34);
-            this.attach_button.TabIndex = 5;
-            this.attach_button.Text = "Attach";
-            this.attach_button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.attach_button.UseVisualStyleBackColor = false;
-            this.attach_button.Click += new System.EventHandler(this.attach_button_Click);
+            this.AttachButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(38)))), ((int)(((byte)(77)))));
+            this.AttachButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.AttachButton.FlatAppearance.BorderSize = 0;
+            this.AttachButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AttachButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AttachButton.ForeColor = System.Drawing.Color.White;
+            this.AttachButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.AttachButton.Location = new System.Drawing.Point(163, 332);
+            this.AttachButton.Name = "AttachButton";
+            this.AttachButton.Size = new System.Drawing.Size(162, 34);
+            this.AttachButton.TabIndex = 5;
+            this.AttachButton.Text = "Attach";
+            this.AttachButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.AttachButton.UseVisualStyleBackColor = false;
+            this.AttachButton.Click += new System.EventHandler(this.AttachButton_Click);
             // 
-            // clear_button
+            // ClearButton
             // 
-            this.clear_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.clear_button.FlatAppearance.BorderSize = 0;
-            this.clear_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.clear_button.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clear_button.ForeColor = System.Drawing.Color.White;
-            this.clear_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.clear_button.Location = new System.Drawing.Point(325, 332);
-            this.clear_button.Name = "clear_button";
-            this.clear_button.Size = new System.Drawing.Size(163, 34);
-            this.clear_button.TabIndex = 3;
-            this.clear_button.Text = "Clear";
-            this.clear_button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.clear_button.UseVisualStyleBackColor = false;
-            this.clear_button.Click += new System.EventHandler(this.clear_button_Click);
+            this.ClearButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ClearButton.FlatAppearance.BorderSize = 0;
+            this.ClearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ClearButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClearButton.ForeColor = System.Drawing.Color.White;
+            this.ClearButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ClearButton.Location = new System.Drawing.Point(325, 332);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(163, 34);
+            this.ClearButton.TabIndex = 3;
+            this.ClearButton.Text = "Clear";
+            this.ClearButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ClearButton.UseVisualStyleBackColor = false;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
-            // options_button
+            // OptionsButton
             // 
-            this.options_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.options_button.FlatAppearance.BorderSize = 0;
-            this.options_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.options_button.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.options_button.ForeColor = System.Drawing.Color.White;
-            this.options_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.options_button.Location = new System.Drawing.Point(488, 332);
-            this.options_button.Name = "options_button";
-            this.options_button.Size = new System.Drawing.Size(162, 34);
-            this.options_button.TabIndex = 11;
-            this.options_button.Text = "Options";
-            this.options_button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.options_button.UseVisualStyleBackColor = false;
+            this.OptionsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.OptionsButton.FlatAppearance.BorderSize = 0;
+            this.OptionsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OptionsButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OptionsButton.ForeColor = System.Drawing.Color.White;
+            this.OptionsButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OptionsButton.Location = new System.Drawing.Point(488, 332);
+            this.OptionsButton.Name = "OptionsButton";
+            this.OptionsButton.Size = new System.Drawing.Size(162, 34);
+            this.OptionsButton.TabIndex = 11;
+            this.OptionsButton.Text = "Options";
+            this.OptionsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.OptionsButton.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -235,38 +235,38 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(650, 366);
-            this.Controls.Add(this.options_button);
-            this.Controls.Add(this.editor);
-            this.Controls.Add(this.attach_button);
-            this.Controls.Add(this.clear_button);
-            this.Controls.Add(this.execute_button);
-            this.Controls.Add(this.top_bar);
+            this.Controls.Add(this.OptionsButton);
+            this.Controls.Add(this.Editor);
+            this.Controls.Add(this.AttachButton);
+            this.Controls.Add(this.ClearButton);
+            this.Controls.Add(this.ExecuteButton);
+            this.Controls.Add(this.TopBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "RBLXex";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.top_bar.ResumeLayout(false);
-            this.top_bar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
+            this.TopBar.ResumeLayout(false);
+            this.TopBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel top_bar;
-        private System.Windows.Forms.Button execute_button;
-        private System.Windows.Forms.Button clear_button;
-        private System.Windows.Forms.Button open_file_button;
-        private System.Windows.Forms.Button save_file_button;
-        private System.Windows.Forms.Button close_button;
-        private System.Windows.Forms.Button minimize_button;
-        private System.Windows.Forms.Label title;
-        private System.Windows.Forms.Button attach_button;
-        private System.Windows.Forms.PictureBox logo;
+        private System.Windows.Forms.Panel TopBar;
+        private System.Windows.Forms.Button ExecuteButton;
+        private System.Windows.Forms.Button ClearButton;
+        private System.Windows.Forms.Button OpenFileButton;
+        private System.Windows.Forms.Button SaveFileButton;
+        private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.Button MinimizeButton;
+        private System.Windows.Forms.Label Title;
+        private System.Windows.Forms.PictureBox Logo;
         private System.Windows.Forms.Panel seperator;
-        private System.Windows.Forms.WebBrowser editor;
-        private System.Windows.Forms.Button options_button;
+        private System.Windows.Forms.WebBrowser Editor;
+        private System.Windows.Forms.Button OptionsButton;
+        private System.Windows.Forms.Button AttachButton;
     }
 }
