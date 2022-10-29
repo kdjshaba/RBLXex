@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeAreDevs_API;
+using System.Runtime.InteropServices;
 
 namespace RBLXex
 {
@@ -16,84 +17,95 @@ namespace RBLXex
     {
         private readonly ExploitAPI api = new ExploitAPI();
         private readonly WebClient webClient = new WebClient();
+        
+        private readonly string robloxName = "RobloxPlayerBeta";
 
+        private readonly double version = 0.2;
+        private readonly string releaseType = "Alpha";
+
+        private readonly string monacoPath = Path.Combine(Application.StartupPath, @"monaco");
+        private readonly string savedExploitsPath = Path.Combine(Application.StartupPath, @"saved");
+        private readonly string settingsPath = Path.Combine(Application.StartupPath, @"settings.txt");
+
+        private readonly OpenFileDialog openDialog = new OpenFileDialog();
+        private readonly SaveFileDialog saveDialog = new SaveFileDialog { Filter = "Lua File|*.lua|Text File|*.txt" };
+        
         private Point lastPoint;
-
+        
         private bool busyAttaching = false;
 
-        private static readonly string robloxName = "RobloxPlayerBeta";
-        private static readonly string monacoPath = Path.Combine(Application.StartupPath, @"monaco");
-        
-        public Form1()
-        {
-            InitializeComponent();
-        }
+        //Others
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,     // x-coordinate of upper-left corner
+            int nTopRect,      // y-coordinate of upper-left corner
+            int nRightRect,    // x-coordinate of lower-right corner
+            int nBottomRect,   // y-coordinate of lower-right corner
+            int nWidthEllipse, // width of ellipse
+            int nHeightEllipse // height of ellipse
+        );
 
         //Custom Functions
+        private int SecMilli(double seconds)
+        {
+            return (int)Math.Round(seconds * 1000);
+        }
+
         private int LerpInt(float from, float to, float speed)
         {
             return (int)Math.Round(from * (1 - speed) + to * speed);
         }
 
-        private void SetupIntellisense()
+        private bool IsAppRunning(string appName)
         {
-            void AddIntellisense(string label, string kind, string detail, string insertText)
-            {
-                string text = "\"" + label + "\"";
-                string text2 = "\"" + kind + "\"";
-                string text3 = "\"" + detail + "\"";
-                string text4 = "\"" + insertText + "\"";
+            if (Process.GetProcesses().Any((p) => p.ProcessName.Contains(appName))) { return true; }
 
-                Editor.Document.InvokeScript("AddIntellisense", new object[]
-                {
-                    label,
-                    kind,
-                    detail,
-                    insertText
-                });
-            }
-
-            foreach (string text in File.ReadAllLines(monacoPath + "/globalf.txt"))
-            {
-                bool flag = text.Contains(':');
-
-                if (flag)
-                {
-                    AddIntellisense(text, "Function", text, text.Substring(1));
-                }
-                else
-                {
-                    AddIntellisense(text, "Function", text, text);
-                }
-            }
-
-            foreach (string text in File.ReadLines(monacoPath + "/globalv.txt"))
-            {
-                AddIntellisense(text, "Variable", text, text);
-            }
-
-            foreach (string text in File.ReadLines(monacoPath + "/globalns.txt"))
-            {
-                AddIntellisense(text, "Class", text, text);
-            }
-
-            foreach (string text in File.ReadLines(monacoPath + "/classfunc.txt"))
-            {
-                AddIntellisense(text, "Method", text, text);
-            }
-
-            foreach (string text in File.ReadLines(monacoPath + "/base.txt"))
-            {
-                AddIntellisense(text, "Keyword", text, text);
-            }
+            return false;
+        }
+        
+        private string GetEditorValue() {
+            return Editor.Document.InvokeScript("GetText", new string[0]).ToString();
         }
 
-        private string GetEditorValue() {
-            object[] args = new string[0];
-            object obj = Editor.Document.InvokeScript("GetText", args);
-            string script = obj.ToString();
+        private string GetSetting(string setting)
+        {
+            foreach (string line in File.ReadAllLines(settingsPath))
+            {
+                string[] split = line.Split(new char[] { ':' });
 
-            return script;
+                if (split.Length > 0)
+                {
+                    string settingName = split[0];
+
+                    settingName = settingName.TrimStart('[');
+                    settingName = settingName.TrimEnd(']');
+
+                    if (settingName == setting)
+                    {
+                        return split[1];
+                    }
+                }
+            }
+            
+            return "";
+        }
+
+        private void SetupIntellisense()
+        {
+            void RepetitiveAdding(string fileName, string kind)
+            {
+                foreach (string text in File.ReadLines(monacoPath + $"/{fileName}"))
+                {
+                    Editor.Document.InvokeScript("AddIntellisense", new object[] { text, kind, text, text });
+                }
+            }
+
+            RepetitiveAdding("globalf.txt", "Function");
+            RepetitiveAdding("globalv.txt", "Variable");
+            RepetitiveAdding("globalns.txt", "Class");
+            RepetitiveAdding("classfunc.txt", "Method");
+            RepetitiveAdding("base.txt", "Keyword");
         }
 
         private void SetEditorValue(string value)
@@ -105,81 +117,58 @@ namespace RBLXex
             Task.Run(() => { MessageBox.Show(msg); }); 
         }
 
-        private bool IsAppRunning(string appName)
-        {
-            //Checks if an app is running
-
-            if (Process.GetProcesses().Any((p) => p.ProcessName.Contains(appName))) { return true; }
-
-            return false;
-        }
-
         private void PrepareForAttachment()
         {
-            //Bypass API launch error by deleting a finj.exe (kinda hacky ik but it has to be done)
+            //Bypass API launch error by deleting 'finj.exe' (kinda hacky ik but it has to be done)
             //Error was "You are using an outdated version of the WeAreDevs_API"
 
-            //Removing finj.exe fixes it somehow (I didnt read the documentation so I dont understand this)
+            //Removing finj.exe fixes it somehow
             
-            try
-            {
-                //File.Delete(@".\WRDAPICONF.json");
-                //File.Delete(@".\exploit-main.dll");
-                //File.Delete(@".\FastColorTextBox.xml");
-                //File.Delete(@".\kernel64.sys.dll");
-                //File.Delete(@".\Newtonsoft.Json.dll");
-                File.Delete(@".\finj.exe");
-            }
-            catch { }
+            try { File.Delete(@".\finj.exe"); } catch { }
         }
 
         private void CloseProcess(string name)
         {
             //Closes any process that has the name specified
 
-            Process[] processes = null;
-
             try
             {
-                processes = Process.GetProcessesByName(name);
+                Process[] processes = Process.GetProcessesByName(name);
 
-                Process mainProcess = processes[0];
-
-                if (!mainProcess.HasExited)
+                if (processes != null && processes.Length > 0)
                 {
-                    mainProcess.Kill();
+                    if (!processes[0].HasExited) { processes[0].Kill(); } //Get the main process and kill it
+
+                    foreach (Process process in processes) { process.Dispose(); }
                 }
             }
-            finally
-            {
-                if (processes != null)
-                {
-                    foreach (Process process in processes)
-                    {
-                        process.Dispose();
-                    }
-                }
-            }
+            catch { }
         }
 
         private void Attach()
         {
             ShowMessage("Attachment process has begun, this may take a while to startup");
 
-            PrepareForAttachment();
-
             busyAttaching = true;
+            
+            PrepareForAttachment();
             api.LaunchExploit(); //Begin attaching
 
-            while (!api.isAPIAttached()) { Thread.Sleep(50); }
+            while (!api.isAPIAttached()) { Thread.Sleep(25); }
+
+            CloseProcess("finj"); //Close the annoying command prompt after attachment
 
             busyAttaching = false;
-            CloseProcess("finj"); //Close the annoying command prompt after attachment
 
             ShowMessage("Attachment has finished");
         }
 
         //UI Events
+        private void RoundCorners(Control element)
+        {
+            element.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, element.Width, element.Height, 15, 15));
+        }
+
         private void MinimizeButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
@@ -226,28 +215,29 @@ namespace RBLXex
 
         private void OpenFileButton_Click(object sender, EventArgs e)
         {
-            //Open a file to change the content of the text editor
-            OpenFileDialog dialog = new OpenFileDialog();
+            openDialog.InitialDirectory = savedExploitsPath;
 
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (openDialog.ShowDialog() == DialogResult.OK)
             {
-                dialog.Title = "Open";
-                SetEditorValue(File.ReadAllText(dialog.FileName));
+                openDialog.Title = "Open";
+
+                SetEditorValue(File.ReadAllText(openDialog.FileName));
             }
         }
 
         private void SaveFileButton_Click(object sender, EventArgs e)
         {
-            //Create a new file with contents of the text editor
-            SaveFileDialog dialog = new SaveFileDialog { Filter = "Lua File|*.lua|Text File|*.txt" };
+            saveDialog.InitialDirectory = savedExploitsPath;
+            saveDialog.FileName = $"Exploit#{Directory.GetFiles(savedExploitsPath, "*", SearchOption.TopDirectoryOnly).Length + 1}";
 
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (saveDialog.ShowDialog() == DialogResult.OK)
             {
-                using (Stream stream = File.Open(dialog.FileName, FileMode.CreateNew))
-                using (StreamWriter writer = new StreamWriter(stream))
-                {
-                    writer.Write(GetEditorValue());
-                }
+                if (File.Exists(saveDialog.FileName)) { File.Delete(saveDialog.FileName); }
+
+                StreamWriter writer = new StreamWriter(File.Open(saveDialog.FileName, FileMode.CreateNew));
+                
+                writer.Write(GetEditorValue());
+                writer.Close();
             }
         }
 
@@ -260,21 +250,30 @@ namespace RBLXex
         {
             if (mouse.Button == MouseButtons.Left)
             {
-                //Normal Movement
-                //this.Left += mouse.X - lastPoint.X;
-                //this.Top += mouse.Y - lastPoint.Y;
-
-                //Interpolated movement
-                this.Top = LerpInt(this.Top, this.Top + (mouse.Y - lastPoint.Y), 0.175f);
-                this.Left = LerpInt(this.Left, this.Left + (mouse.X - lastPoint.X), 0.175f);
+                this.Top = LerpInt(this.Top, this.Top + (mouse.Y - lastPoint.Y), 0.225f);
+                this.Left = LerpInt(this.Left, this.Left + (mouse.X - lastPoint.X), 0.225f);
             }
         }
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            webClient.Proxy = null;
+            //Create 'saved' folder inside the installation directory if it doesnt exist create it
+            if (!Directory.Exists(savedExploitsPath)) { Directory.CreateDirectory(savedExploitsPath); }
+            
+            //Create 'settings.txt' file to get app settings from
+            if (!File.Exists(settingsPath)) {
+                StreamWriter writer = new StreamWriter(File.Open(settingsPath, FileMode.CreateNew));
 
-            //Edit the registry to make sure the WebBrowser emulates a browser correctly so Monaco can run in it
+                writer.Write($"[version]:{version}-{releaseType}");
+
+                writer.Close();
+            }
+
+            GetSetting("version");
+
+            webClient.Proxy = null; //Set clients proxy to nothing
+
+            //Edit the registry to make sure the WebBrowser emulates a browser correctly so it renders in a modern way
             //I tried using WebView2 but it didnt work properly so I have to use stupid WebBrowser that is inneficient and uses alot more memory
             //also WebView2 was more difficult to get info out of so
 
@@ -290,12 +289,24 @@ namespace RBLXex
                     key.SetValue(friendlyName, 11001, RegistryValueKind.DWord); //Set the registry
                 }
             } catch {}
-
+            
             Editor.Url = new Uri(string.Format(monacoPath + "/index.html", Directory.GetCurrentDirectory()));
 
-            await Task.Delay(100); //Wait 0.1 seconds so website can load up
-
+            await Task.Delay(SecMilli(0.2)); //Wait 0.2 seconds so website can load up
+            
             SetupIntellisense();
         }
+
+        public Form1()
+        {
+            InitializeComponent();
+
+            RoundCorners(this);
+        }
+
+        private void OpenFileButton_Paint(object sender, PaintEventArgs e) { RoundCorners(OpenFileButton); }
+        private void SaveFileButton_Paint(object sender, PaintEventArgs e) { RoundCorners(SaveFileButton); }
+        private void MinimizeButton_Paint(object sender, PaintEventArgs e) { RoundCorners(MinimizeButton); }
+        private void CloseButton_Paint(object sender, PaintEventArgs e) { RoundCorners(CloseButton); }
     }
 }

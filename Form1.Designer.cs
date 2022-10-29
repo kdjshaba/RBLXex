@@ -29,131 +29,21 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.TopBar = new System.Windows.Forms.Panel();
-            this.seperator = new System.Windows.Forms.Panel();
-            this.Logo = new System.Windows.Forms.PictureBox();
-            this.MinimizeButton = new System.Windows.Forms.Button();
-            this.Title = new System.Windows.Forms.Label();
-            this.OpenFileButton = new System.Windows.Forms.Button();
-            this.SaveFileButton = new System.Windows.Forms.Button();
-            this.CloseButton = new System.Windows.Forms.Button();
             this.ExecuteButton = new System.Windows.Forms.Button();
             this.Editor = new System.Windows.Forms.WebBrowser();
             this.AttachButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
             this.OptionsButton = new System.Windows.Forms.Button();
-            this.TopBar.SuspendLayout();
+            this.CloseButton = new System.Windows.Forms.Button();
+            this.SaveFileButton = new System.Windows.Forms.Button();
+            this.OpenFileButton = new System.Windows.Forms.Button();
+            this.Title = new System.Windows.Forms.Label();
+            this.MinimizeButton = new System.Windows.Forms.Button();
+            this.Logo = new System.Windows.Forms.PictureBox();
+            this.TopBar = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
+            this.TopBar.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // TopBar
-            // 
-            this.TopBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.TopBar.Controls.Add(this.seperator);
-            this.TopBar.Controls.Add(this.Logo);
-            this.TopBar.Controls.Add(this.MinimizeButton);
-            this.TopBar.Controls.Add(this.Title);
-            this.TopBar.Controls.Add(this.OpenFileButton);
-            this.TopBar.Controls.Add(this.SaveFileButton);
-            this.TopBar.Controls.Add(this.CloseButton);
-            this.TopBar.ForeColor = System.Drawing.Color.White;
-            this.TopBar.Location = new System.Drawing.Point(0, 0);
-            this.TopBar.Name = "TopBar";
-            this.TopBar.Size = new System.Drawing.Size(650, 34);
-            this.TopBar.TabIndex = 0;
-            this.TopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopBar_MouseDown);
-            this.TopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopBar_MouseMove);
-            // 
-            // seperator
-            // 
-            this.seperator.BackColor = System.Drawing.Color.White;
-            this.seperator.Location = new System.Drawing.Point(233, 8);
-            this.seperator.Name = "seperator";
-            this.seperator.Size = new System.Drawing.Size(1, 20);
-            this.seperator.TabIndex = 9;
-            // 
-            // Logo
-            // 
-            this.Logo.BackColor = System.Drawing.Color.Transparent;
-            this.Logo.Image = ((System.Drawing.Image)(resources.GetObject("Logo.Image")));
-            this.Logo.Location = new System.Drawing.Point(3, 0);
-            this.Logo.Name = "Logo";
-            this.Logo.Size = new System.Drawing.Size(34, 34);
-            this.Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Logo.TabIndex = 8;
-            this.Logo.TabStop = false;
-            // 
-            // MinimizeButton
-            // 
-            this.MinimizeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.MinimizeButton.FlatAppearance.BorderSize = 0;
-            this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinimizeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MinimizeButton.ForeColor = System.Drawing.Color.White;
-            this.MinimizeButton.Location = new System.Drawing.Point(556, 0);
-            this.MinimizeButton.Name = "MinimizeButton";
-            this.MinimizeButton.Size = new System.Drawing.Size(47, 34);
-            this.MinimizeButton.TabIndex = 7;
-            this.MinimizeButton.Text = "-";
-            this.MinimizeButton.UseVisualStyleBackColor = false;
-            this.MinimizeButton.Click += new System.EventHandler(this.MinimizeButton_Click);
-            // 
-            // Title
-            // 
-            this.Title.AutoSize = true;
-            this.Title.BackColor = System.Drawing.Color.Transparent;
-            this.Title.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold);
-            this.Title.ForeColor = System.Drawing.Color.White;
-            this.Title.Location = new System.Drawing.Point(40, 4);
-            this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(79, 25);
-            this.Title.TabIndex = 6;
-            this.Title.Text = "RBLXex";
-            // 
-            // OpenFileButton
-            // 
-            this.OpenFileButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.OpenFileButton.FlatAppearance.BorderSize = 0;
-            this.OpenFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OpenFileButton.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpenFileButton.ForeColor = System.Drawing.Color.White;
-            this.OpenFileButton.Location = new System.Drawing.Point(240, 5);
-            this.OpenFileButton.Name = "OpenFileButton";
-            this.OpenFileButton.Size = new System.Drawing.Size(102, 25);
-            this.OpenFileButton.TabIndex = 3;
-            this.OpenFileButton.Text = "Open File";
-            this.OpenFileButton.UseVisualStyleBackColor = false;
-            this.OpenFileButton.Click += new System.EventHandler(this.OpenFileButton_Click);
-            // 
-            // SaveFileButton
-            // 
-            this.SaveFileButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.SaveFileButton.FlatAppearance.BorderSize = 0;
-            this.SaveFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveFileButton.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveFileButton.ForeColor = System.Drawing.Color.White;
-            this.SaveFileButton.Location = new System.Drawing.Point(124, 5);
-            this.SaveFileButton.Name = "SaveFileButton";
-            this.SaveFileButton.Size = new System.Drawing.Size(103, 25);
-            this.SaveFileButton.TabIndex = 4;
-            this.SaveFileButton.Text = "Save File";
-            this.SaveFileButton.UseVisualStyleBackColor = false;
-            this.SaveFileButton.Click += new System.EventHandler(this.SaveFileButton_Click);
-            // 
-            // CloseButton
-            // 
-            this.CloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.CloseButton.FlatAppearance.BorderSize = 0;
-            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CloseButton.ForeColor = System.Drawing.Color.White;
-            this.CloseButton.Location = new System.Drawing.Point(603, 0);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(47, 34);
-            this.CloseButton.TabIndex = 5;
-            this.CloseButton.Text = "X";
-            this.CloseButton.UseVisualStyleBackColor = false;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // ExecuteButton
             // 
@@ -229,6 +119,110 @@
             this.OptionsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.OptionsButton.UseVisualStyleBackColor = false;
             // 
+            // CloseButton
+            // 
+            this.CloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(59)))), ((int)(((byte)(115)))));
+            this.CloseButton.FlatAppearance.BorderSize = 0;
+            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloseButton.ForeColor = System.Drawing.Color.White;
+            this.CloseButton.Location = new System.Drawing.Point(609, 3);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(38, 28);
+            this.CloseButton.TabIndex = 5;
+            this.CloseButton.Text = "X";
+            this.CloseButton.UseVisualStyleBackColor = false;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            this.CloseButton.Paint += new System.Windows.Forms.PaintEventHandler(this.CloseButton_Paint);
+            // 
+            // SaveFileButton
+            // 
+            this.SaveFileButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.SaveFileButton.FlatAppearance.BorderSize = 0;
+            this.SaveFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaveFileButton.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveFileButton.ForeColor = System.Drawing.Color.White;
+            this.SaveFileButton.Location = new System.Drawing.Point(356, 3);
+            this.SaveFileButton.Name = "SaveFileButton";
+            this.SaveFileButton.Size = new System.Drawing.Size(103, 28);
+            this.SaveFileButton.TabIndex = 4;
+            this.SaveFileButton.Text = "Save File";
+            this.SaveFileButton.UseVisualStyleBackColor = false;
+            this.SaveFileButton.Click += new System.EventHandler(this.SaveFileButton_Click);
+            this.SaveFileButton.Paint += new System.Windows.Forms.PaintEventHandler(this.SaveFileButton_Paint);
+            // 
+            // OpenFileButton
+            // 
+            this.OpenFileButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.OpenFileButton.FlatAppearance.BorderSize = 0;
+            this.OpenFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpenFileButton.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpenFileButton.ForeColor = System.Drawing.Color.White;
+            this.OpenFileButton.Location = new System.Drawing.Point(462, 3);
+            this.OpenFileButton.Name = "OpenFileButton";
+            this.OpenFileButton.Size = new System.Drawing.Size(102, 28);
+            this.OpenFileButton.TabIndex = 3;
+            this.OpenFileButton.Text = "Open File";
+            this.OpenFileButton.UseVisualStyleBackColor = false;
+            this.OpenFileButton.Click += new System.EventHandler(this.OpenFileButton_Click);
+            this.OpenFileButton.Paint += new System.Windows.Forms.PaintEventHandler(this.OpenFileButton_Paint);
+            // 
+            // Title
+            // 
+            this.Title.AutoSize = true;
+            this.Title.BackColor = System.Drawing.Color.Transparent;
+            this.Title.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold);
+            this.Title.ForeColor = System.Drawing.Color.White;
+            this.Title.Location = new System.Drawing.Point(40, 4);
+            this.Title.Name = "Title";
+            this.Title.Size = new System.Drawing.Size(79, 25);
+            this.Title.TabIndex = 6;
+            this.Title.Text = "RBLXex";
+            // 
+            // MinimizeButton
+            // 
+            this.MinimizeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.MinimizeButton.FlatAppearance.BorderSize = 0;
+            this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MinimizeButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MinimizeButton.ForeColor = System.Drawing.Color.White;
+            this.MinimizeButton.Location = new System.Drawing.Point(567, 3);
+            this.MinimizeButton.Name = "MinimizeButton";
+            this.MinimizeButton.Size = new System.Drawing.Size(38, 28);
+            this.MinimizeButton.TabIndex = 7;
+            this.MinimizeButton.Text = "-";
+            this.MinimizeButton.UseVisualStyleBackColor = false;
+            this.MinimizeButton.Click += new System.EventHandler(this.MinimizeButton_Click);
+            this.MinimizeButton.Paint += new System.Windows.Forms.PaintEventHandler(this.MinimizeButton_Paint);
+            // 
+            // Logo
+            // 
+            this.Logo.BackColor = System.Drawing.Color.Transparent;
+            this.Logo.Image = ((System.Drawing.Image)(resources.GetObject("Logo.Image")));
+            this.Logo.Location = new System.Drawing.Point(3, 0);
+            this.Logo.Name = "Logo";
+            this.Logo.Size = new System.Drawing.Size(34, 34);
+            this.Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Logo.TabIndex = 8;
+            this.Logo.TabStop = false;
+            // 
+            // TopBar
+            // 
+            this.TopBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.TopBar.Controls.Add(this.Logo);
+            this.TopBar.Controls.Add(this.MinimizeButton);
+            this.TopBar.Controls.Add(this.Title);
+            this.TopBar.Controls.Add(this.OpenFileButton);
+            this.TopBar.Controls.Add(this.SaveFileButton);
+            this.TopBar.Controls.Add(this.CloseButton);
+            this.TopBar.ForeColor = System.Drawing.Color.White;
+            this.TopBar.Location = new System.Drawing.Point(0, 0);
+            this.TopBar.Name = "TopBar";
+            this.TopBar.Size = new System.Drawing.Size(650, 34);
+            this.TopBar.TabIndex = 0;
+            this.TopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopBar_MouseDown);
+            this.TopBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopBar_MouseMove);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,27 +240,25 @@
             this.Name = "Form1";
             this.Text = "RBLXex";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
             this.TopBar.ResumeLayout(false);
             this.TopBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel TopBar;
         private System.Windows.Forms.Button ExecuteButton;
         private System.Windows.Forms.Button ClearButton;
-        private System.Windows.Forms.Button OpenFileButton;
-        private System.Windows.Forms.Button SaveFileButton;
-        private System.Windows.Forms.Button CloseButton;
-        private System.Windows.Forms.Button MinimizeButton;
-        private System.Windows.Forms.Label Title;
-        private System.Windows.Forms.PictureBox Logo;
-        private System.Windows.Forms.Panel seperator;
         private System.Windows.Forms.WebBrowser Editor;
         private System.Windows.Forms.Button OptionsButton;
         private System.Windows.Forms.Button AttachButton;
+        private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.Button SaveFileButton;
+        private System.Windows.Forms.Button OpenFileButton;
+        private System.Windows.Forms.Label Title;
+        private System.Windows.Forms.Button MinimizeButton;
+        private System.Windows.Forms.PictureBox Logo;
+        private System.Windows.Forms.Panel TopBar;
     }
 }

@@ -82,3 +82,5 @@ C:\Users\Nic\source\repos\RBLXex\RBLXex\obj\Debug\RBLXex.csproj.CopyComplete
 C:\Users\Nic\source\repos\RBLXex\RBLXex\obj\Debug\RBLXex.exe
 C:\Users\Nic\source\repos\RBLXex\RBLXex\obj\Debug\RBLXex.pdb
 C:\Users\Nic\source\repos\RBLXex\RBLXex\bin\Debug\monaco\index.html
+C:\Users\Nic\source\repos\RBLXex\RBLXex\obj\Debug\RBLXex.csproj.AssemblyReference.cache
+C:\Users\Nic\source\repos\RBLXex\RBLXex\obj\Debug\RBLXex.csproj.SuggestedBindingRedirects.cache
