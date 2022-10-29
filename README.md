@@ -11,4 +11,4 @@ RBLXex is a level 8 ROBLOX executor using the Monaco editor, powered by the WeAr
 
 
 - **Error:** *_You are using an outdated version of the WeAreDevs API_*
-- **Solution:** Close the executor then delete finj.exe and restart the executor
+- **Solution:** Close the executor then delete finj.exe and restart the executor, if that doesnt work redownload the executor on the latest version
