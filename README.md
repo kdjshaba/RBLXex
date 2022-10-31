@@ -1,7 +1,7 @@
 ## RBLXex
 ----------------------------------------------
 
-RBLXex is a level 8 ROBLOX executor using the Monaco editor, powered by the WeAreDevs API.
+RBLXex is a level 8 ROBLOX executor using the Monaco editor, powered by the WeAreDevs API and built using WinForms.
 
 ![RBLXex-V0 0 2](https://user-images.githubusercontent.com/110287364/198851846-dbca967c-789a-4c74-a443-a6264a825870.png)
 
