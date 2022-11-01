@@ -142,7 +142,7 @@
             this.SaveFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveFileButton.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveFileButton.ForeColor = System.Drawing.Color.White;
-            this.SaveFileButton.Location = new System.Drawing.Point(356, 3);
+            this.SaveFileButton.Location = new System.Drawing.Point(357, 3);
             this.SaveFileButton.Name = "SaveFileButton";
             this.SaveFileButton.Size = new System.Drawing.Size(103, 28);
             this.SaveFileButton.TabIndex = 4;
@@ -158,7 +158,7 @@
             this.OpenFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpenFileButton.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OpenFileButton.ForeColor = System.Drawing.Color.White;
-            this.OpenFileButton.Location = new System.Drawing.Point(462, 3);
+            this.OpenFileButton.Location = new System.Drawing.Point(463, 3);
             this.OpenFileButton.Name = "OpenFileButton";
             this.OpenFileButton.Size = new System.Drawing.Size(102, 28);
             this.OpenFileButton.TabIndex = 3;
@@ -186,7 +186,7 @@
             this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MinimizeButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MinimizeButton.ForeColor = System.Drawing.Color.White;
-            this.MinimizeButton.Location = new System.Drawing.Point(567, 3);
+            this.MinimizeButton.Location = new System.Drawing.Point(568, 3);
             this.MinimizeButton.Name = "MinimizeButton";
             this.MinimizeButton.Size = new System.Drawing.Size(38, 28);
             this.MinimizeButton.TabIndex = 7;

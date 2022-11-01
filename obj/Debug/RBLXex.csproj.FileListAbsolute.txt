@@ -74,7 +74,6 @@ C:\Users\Nic\source\repos\RBLXex\RBLXex\bin\Debug\RBLXex.exe
 C:\Users\Nic\source\repos\RBLXex\RBLXex\bin\Debug\RBLXex.pdb
 C:\Users\Nic\source\repos\RBLXex\RBLXex\bin\Debug\WeAreDevs_API.dll
 C:\Users\Nic\source\repos\RBLXex\RBLXex\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Nic\source\repos\RBLXex\RBLXex\obj\Debug\RBLXex.Form1.resources
 C:\Users\Nic\source\repos\RBLXex\RBLXex\obj\Debug\RBLXex.Properties.Resources.resources
 C:\Users\Nic\source\repos\RBLXex\RBLXex\obj\Debug\RBLXex.csproj.GenerateResource.cache
 C:\Users\Nic\source\repos\RBLXex\RBLXex\obj\Debug\RBLXex.csproj.CoreCompileInputs.cache
@@ -84,3 +83,4 @@ C:\Users\Nic\source\repos\RBLXex\RBLXex\obj\Debug\RBLXex.pdb
 C:\Users\Nic\source\repos\RBLXex\RBLXex\bin\Debug\monaco\index.html
 C:\Users\Nic\source\repos\RBLXex\RBLXex\obj\Debug\RBLXex.csproj.AssemblyReference.cache
 C:\Users\Nic\source\repos\RBLXex\RBLXex\obj\Debug\RBLXex.csproj.SuggestedBindingRedirects.cache
+C:\Users\Nic\source\repos\RBLXex\RBLXex\obj\Debug\RBLXex.Form1.resources

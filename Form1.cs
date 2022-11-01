@@ -4,47 +4,37 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeAreDevs_API;
-using System.Runtime.InteropServices;
+using RBLXex.Helpers;
+using System.Net;
 
 namespace RBLXex
 {
     public partial class Form1 : Form
     {
-        private readonly ExploitAPI api = new ExploitAPI();
-        private readonly WebClient webClient = new WebClient();
+        private ExploitAPI api = new ExploitAPI();
+        private WebClient webClient = new WebClient();
+
+        private string robloxName = "RobloxPlayerBeta";
+
+        private double version = 0.2;
+        private string releaseType = "Alpha";
         
-        private readonly string robloxName = "RobloxPlayerBeta";
+        private string monacoPath = Path.Combine(Application.StartupPath, @"Monaco");
 
-        private readonly double version = 0.2;
-        private readonly string releaseType = "Alpha";
+        private string savedPath = Path.Combine(Application.StartupPath, @"Saved");
+        private string savedExploitsPath = Path.Combine(Application.StartupPath, @"Saved\Exploits");
+        private string settingsPath = Path.Combine(Application.StartupPath, @"Saved\settings.txt");
 
-        private readonly string monacoPath = Path.Combine(Application.StartupPath, @"monaco");
-        private readonly string savedExploitsPath = Path.Combine(Application.StartupPath, @"saved");
-        private readonly string settingsPath = Path.Combine(Application.StartupPath, @"settings.txt");
-
-        private readonly OpenFileDialog openDialog = new OpenFileDialog();
-        private readonly SaveFileDialog saveDialog = new SaveFileDialog { Filter = "Lua File|*.lua|Text File|*.txt" };
+        private OpenFileDialog openDialog = new OpenFileDialog();
+        private SaveFileDialog saveDialog = new SaveFileDialog { Filter = "Lua File (.lua)|*.lua|Text File (.txt)|*.txt|Any File|*" };
         
         private Point lastPoint;
         
         private bool busyAttaching = false;
-
-        //Others
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn
-        (
-            int nLeftRect,     // x-coordinate of upper-left corner
-            int nTopRect,      // y-coordinate of upper-left corner
-            int nRightRect,    // x-coordinate of lower-right corner
-            int nBottomRect,   // y-coordinate of lower-right corner
-            int nWidthEllipse, // width of ellipse
-            int nHeightEllipse // height of ellipse
-        );
 
         //Custom Functions
         private int SecMilli(double seconds)
@@ -63,25 +53,16 @@ namespace RBLXex
 
             return false;
         }
-        
-        private string GetEditorValue() {
-            return Editor.Document.InvokeScript("GetText", new string[0]).ToString();
-        }
 
         private string GetSetting(string setting)
         {
             foreach (string line in File.ReadAllLines(settingsPath))
             {
-                string[] split = line.Split(new char[] { ':' });
+                string[] split = line.Split(new char[] { '=' });
 
                 if (split.Length > 0)
                 {
-                    string settingName = split[0];
-
-                    settingName = settingName.TrimStart('[');
-                    settingName = settingName.TrimEnd(']');
-
-                    if (settingName == setting)
+                    if (split[0] == setting)
                     {
                         return split[1];
                     }
@@ -97,7 +78,7 @@ namespace RBLXex
             {
                 foreach (string text in File.ReadLines(monacoPath + $"/{fileName}"))
                 {
-                    Editor.Document.InvokeScript("AddIntellisense", new object[] { text, kind, text, text });
+                    MonacoHelper.AddIntellisense(Editor, text, kind);
                 }
             }
 
@@ -106,11 +87,6 @@ namespace RBLXex
             RepetitiveAdding("globalns.txt", "Class");
             RepetitiveAdding("classfunc.txt", "Method");
             RepetitiveAdding("base.txt", "Keyword");
-        }
-
-        private void SetEditorValue(string value)
-        {
-            Editor.Document.InvokeScript("SetText", new object[] { value });
         }
 
         private void ShowMessage(string msg) { 
@@ -164,11 +140,6 @@ namespace RBLXex
         }
 
         //UI Events
-        private void RoundCorners(Control element)
-        {
-            element.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, element.Width, element.Height, 15, 15));
-        }
-
         private void MinimizeButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
@@ -194,8 +165,10 @@ namespace RBLXex
         {
             void SendEditorValueToApi()
             {
-                //I have to use this because it requires a switch back to the UI thread to get editors value
-                api.SendLuaScript(GetEditorValue());
+                //I have to use this because it requires a switch back to the UI thread so API can run
+                string script = MonacoHelper.GetCode(Editor);
+
+                api.SendLuaScript(script);
             }
 
             if (busyAttaching) { ShowMessage("Busy attaching, please wait."); return; }
@@ -204,13 +177,13 @@ namespace RBLXex
             Task.Run(() => {
                 if (!api.isAPIAttached()) { Attach(); }
 
-                Invoke(new MethodInvoker(SendEditorValueToApi));
+                UIHelper.SwitchToUI(this, new MethodInvoker(SendEditorValueToApi));
             });
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            SetEditorValue("");
+            MonacoHelper.SetCode(Editor, "");
         }
 
         private void OpenFileButton_Click(object sender, EventArgs e)
@@ -221,14 +194,14 @@ namespace RBLXex
             {
                 openDialog.Title = "Open";
 
-                SetEditorValue(File.ReadAllText(openDialog.FileName));
+                MonacoHelper.SetCode(Editor, File.ReadAllText(openDialog.FileName));
             }
         }
 
         private void SaveFileButton_Click(object sender, EventArgs e)
         {
             saveDialog.InitialDirectory = savedExploitsPath;
-            saveDialog.FileName = $"Exploit#{Directory.GetFiles(savedExploitsPath, "*", SearchOption.TopDirectoryOnly).Length + 1}";
+            saveDialog.FileName = $"exploit_{Directory.GetFiles(savedExploitsPath, "*", SearchOption.TopDirectoryOnly).Length + 1}";
 
             if (saveDialog.ShowDialog() == DialogResult.OK)
             {
@@ -236,7 +209,7 @@ namespace RBLXex
 
                 StreamWriter writer = new StreamWriter(File.Open(saveDialog.FileName, FileMode.CreateNew));
                 
-                writer.Write(GetEditorValue());
+                writer.Write(MonacoHelper.GetCode(Editor));
                 writer.Close();
             }
         }
@@ -250,34 +223,37 @@ namespace RBLXex
         {
             if (mouse.Button == MouseButtons.Left)
             {
-                this.Top = LerpInt(this.Top, this.Top + (mouse.Y - lastPoint.Y), 0.225f);
-                this.Left = LerpInt(this.Left, this.Left + (mouse.X - lastPoint.X), 0.225f);
+                Top = LerpInt(Top, Top + (mouse.Y - lastPoint.Y), 0.2f);
+                Left = LerpInt(Left, Left + (mouse.X - lastPoint.X), 0.2f);
             }
         }
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            //Create 'saved' folder inside the installation directory if it doesnt exist create it
+            //Create 'Saved' folder in the installation directory
+            if (!Directory.Exists(savedPath)) { Directory.CreateDirectory(savedPath); }
+            
+            //Create 'Exploits' folder inside the 'Saved' directory
             if (!Directory.Exists(savedExploitsPath)) { Directory.CreateDirectory(savedExploitsPath); }
             
             //Create 'settings.txt' file to get app settings from
             if (!File.Exists(settingsPath)) {
                 StreamWriter writer = new StreamWriter(File.Open(settingsPath, FileMode.CreateNew));
 
-                writer.Write($"[version]:{version}-{releaseType}");
+                writer.Write($"version={version}-{releaseType}");
 
                 writer.Close();
             }
 
-            GetSetting("version");
-
-            webClient.Proxy = null; //Set clients proxy to nothing
-
+            webClient.Proxy = null;
+            webClient.Headers.Add("User-Agent: Other"); //Add header to stop 403 error
+            
             //Edit the registry to make sure the WebBrowser emulates a browser correctly so it renders in a modern way
             //I tried using WebView2 but it didnt work properly so I have to use stupid WebBrowser that is inneficient and uses alot more memory
             //also WebView2 was more difficult to get info out of so
 
-            try {
+            try
+            {
                 //Get the registry key
                 RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\FEATURE_BROWSER_EMULATION", true);
                 
@@ -301,12 +277,12 @@ namespace RBLXex
         {
             InitializeComponent();
 
-            RoundCorners(this);
+            UIHelper.RoundEdges(this, this.CreateGraphics());
         }
 
-        private void OpenFileButton_Paint(object sender, PaintEventArgs e) { RoundCorners(OpenFileButton); }
-        private void SaveFileButton_Paint(object sender, PaintEventArgs e) { RoundCorners(SaveFileButton); }
-        private void MinimizeButton_Paint(object sender, PaintEventArgs e) { RoundCorners(MinimizeButton); }
-        private void CloseButton_Paint(object sender, PaintEventArgs e) { RoundCorners(CloseButton); }
+        private void OpenFileButton_Paint(object sender, PaintEventArgs e) { UIHelper.RoundEdges(OpenFileButton, e.Graphics); }
+        private void SaveFileButton_Paint(object sender, PaintEventArgs e) { UIHelper.RoundEdges(SaveFileButton, e.Graphics); }
+        private void MinimizeButton_Paint(object sender, PaintEventArgs e) { UIHelper.RoundEdges(MinimizeButton, e.Graphics); }
+        private void CloseButton_Paint(object sender, PaintEventArgs e) { UIHelper.RoundEdges(CloseButton, e.Graphics); }
     }
 }
