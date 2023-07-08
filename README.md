@@ -1,4 +1,5 @@
 # PLEASE NOTE THIS DOES NOT WORK POST BYFRON, REVAMP IS CURRENTLY IN DEVELOPMENT UNDER A NEW, MORE POWERFUL API AND MORE FEATURES
+## Heres the link to the revamped: https://github.com/Ossyence/RBLXex-Revamp
 
 ## RBLXex
 ----------------------------------------------
